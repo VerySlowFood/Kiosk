@@ -2,6 +2,7 @@ package com.slowfood.kiosk.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -30,9 +31,7 @@ public class OrderActivity extends AppCompatActivity {
 
 
         confirm.setOnClickListener(view -> {
-            Intent i = new Intent(this, CartActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
+            order();
         });
     }
 
@@ -43,5 +42,17 @@ public class OrderActivity extends AppCompatActivity {
         products.add(new Product(R.drawable.img_1, "햄버거 세트", "맥도날드 햄버거 세트", 7500, 3));
         products.add(new Product(R.drawable.img_2, "치즈버거", "맥도날드 치즈버거", 8000, 4));
         products.add(new Product(R.drawable.img_3, "콜라", "코카콜라", 1000, 5));
+    }
+
+    private void order(){
+        Intent i = new Intent(this, CartActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_X)order();
+        return super.onKeyDown(keyCode, event);
     }
 }
