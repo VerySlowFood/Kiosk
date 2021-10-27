@@ -21,7 +21,7 @@ public class MessageActivity extends AppCompatActivity {
         goBack = findViewById(R.id.goBack);
 
         goBack.setOnClickListener(view -> {
-            Intent i = new Intent(this, OrderActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         });
