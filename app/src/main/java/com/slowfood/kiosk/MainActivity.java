@@ -1,20 +1,18 @@
 package com.slowfood.kiosk;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.slowfood.kiosk.databinding.ActivityMainBinding;
+import com.slowfood.kiosk.ui.OrderActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        button = findViewById(R.id.button);
+        button.setOnClickListener(view -> {
+            Intent i = new Intent(this, OrderActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        });
     }
 
 }

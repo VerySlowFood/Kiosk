@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kiosk">
         <activity
-            android:name=".CartActivity"
+            android:name=".ui.MessageActivity"
             android:exported="false" />
         <activity
-            android:name=".OrderActivity"
+            android:name=".ui.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.OrderActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
