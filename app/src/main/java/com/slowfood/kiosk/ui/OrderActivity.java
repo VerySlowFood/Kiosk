@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +18,7 @@ public class OrderActivity extends AppCompatActivity {
 
     public static ArrayList<Product> products;
     public static ArrayList<Product> selected = new ArrayList<>();
-    public static boolean activated = false;
+    public static OrderActivity INSTANCE = null;
     static {
         products = new ArrayList<>(7);
         products.add(new Product(R.drawable.dllllllllllllllllllllllllllll, "치킨버거", "맘스터치 치킨버거", 4000, 1));
@@ -25,6 +26,11 @@ public class OrderActivity extends AppCompatActivity {
         products.add(new Product(R.drawable.img_1, "햄버거 세트", "맥도날드 햄버거 세트", 7500, 3));
         products.add(new Product(R.drawable.img_2, "치즈버거", "맥도날드 치즈버거", 8000, 4));
         products.add(new Product(R.drawable.img_3, "콜라", "코카콜라", 1000, 5));
+    }
+
+    public void updateCount() {
+        TextView items = findViewById(R.id.item_count);
+        items.setText(String.valueOf(selected.size()));
     }
 
     @Override
@@ -38,14 +44,14 @@ public class OrderActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         confirm.setOnClickListener(view -> order());
-        activated = true;
+        INSTANCE = this;
     }
 
     private void order(){
         Intent i = new Intent(this, CartActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
-        activated = false;
+        INSTANCE = null;
     }
 
     @Override

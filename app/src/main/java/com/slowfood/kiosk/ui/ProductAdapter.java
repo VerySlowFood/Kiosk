@@ -51,7 +51,10 @@ public class ProductAdapter extends BaseAdapter {
 
         Product product = products.get(position);
         view.setOnClickListener(clicked -> {
-            if(OrderActivity.activated) OrderActivity.selected.add(product);
+            if(OrderActivity.INSTANCE != null){
+                OrderActivity.selected.add(product);
+                OrderActivity.INSTANCE.updateCount();
+            }
         });
 
         imageView.setImageResource(product.getPictureId());
