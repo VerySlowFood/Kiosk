@@ -11,37 +11,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.slowfood.kiosk.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class OrderActivity extends AppCompatActivity {
 
-    private Button confirm;
-    private ListView listView;
-    private ArrayList<Product> products;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
-        confirm = findViewById(R.id.confirm_button);
-
-        initializeProducts();
-        listView = findViewById(R.id.products);
-        ProductAdapter adapter = new ProductAdapter(this, getLayoutInflater(), products);
-        listView.setAdapter(adapter);
-
-
-        confirm.setOnClickListener(view -> {
-            order();
-        });
-    }
-
-    public void initializeProducts(){
+    public static ArrayList<Product> products;
+    public static ArrayList<Product> selected = new ArrayList<>();
+    static {
         products = new ArrayList<>(7);
         products.add(new Product(R.drawable.dllllllllllllllllllllllllllll, "치킨버거", "맘스터치 치킨버거", 4000, 1));
         products.add(new Product(R.drawable.img, "햄버거", "햄버거", 3500, 2));
         products.add(new Product(R.drawable.img_1, "햄버거 세트", "맥도날드 햄버거 세트", 7500, 3));
         products.add(new Product(R.drawable.img_2, "치즈버거", "맥도날드 치즈버거", 8000, 4));
         products.add(new Product(R.drawable.img_3, "콜라", "코카콜라", 1000, 5));
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_order);
+        Button confirm = findViewById(R.id.confirm_button);
+
+        ListView listView = findViewById(R.id.products);
+        ProductAdapter adapter = new ProductAdapter(this, getLayoutInflater(), products);
+        listView.setAdapter(adapter);
+
+        confirm.setOnClickListener(view -> order());
     }
 
     private void order(){

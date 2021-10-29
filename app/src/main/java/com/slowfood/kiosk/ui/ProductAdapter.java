@@ -50,6 +50,7 @@ public class ProductAdapter extends BaseAdapter {
         TextView foodId = view.findViewById(R.id.food_id);
 
         Product product = products.get(position);
+        view.setOnClickListener(unused -> OrderActivity.selected.add(product));
 
         imageView.setImageResource(product.getPictureId());
         foodName.setText(product.getName());
