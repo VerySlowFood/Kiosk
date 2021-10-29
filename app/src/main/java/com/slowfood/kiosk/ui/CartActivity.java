@@ -29,7 +29,7 @@ public class CartActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         TextView price = findViewById(R.id.price_text);
-        price.setText(String.valueOf(OrderActivity.selected.stream().mapToInt(Product::getPrice).sum()));
+        price.setText("총 결재액: " + OrderActivity.selected.stream().mapToInt(Product::getPrice).sum());
 
         buy.setOnClickListener(view -> {
             OrderActivity.selected.clear();

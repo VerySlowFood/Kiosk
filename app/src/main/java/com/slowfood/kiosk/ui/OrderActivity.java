@@ -17,6 +17,7 @@ public class OrderActivity extends AppCompatActivity {
 
     public static ArrayList<Product> products;
     public static ArrayList<Product> selected = new ArrayList<>();
+    public static boolean activated = false;
     static {
         products = new ArrayList<>(7);
         products.add(new Product(R.drawable.dllllllllllllllllllllllllllll, "치킨버거", "맘스터치 치킨버거", 4000, 1));
@@ -37,12 +38,14 @@ public class OrderActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         confirm.setOnClickListener(view -> order());
+        activated = true;
     }
 
     private void order(){
         Intent i = new Intent(this, CartActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
+        activated = false;
     }
 
     @Override
