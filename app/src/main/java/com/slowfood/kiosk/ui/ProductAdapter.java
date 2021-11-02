@@ -61,7 +61,7 @@ public class ProductAdapter extends BaseAdapter {
         foodName.setText(product.getName());
         description.setText(product.getDescription());
         foodPrice.setText(String.valueOf(product.getPrice()));
-        foodId.setText(String.valueOf(product.getFoodId()));
+        foodId.setText(product.getFoodId());
 
         return view;
     }
